@@ -1,6 +1,9 @@
 package com.Haoxuan.wacai.web.dao;
 
 import com.Haoxuan.wacai.web.dataobject.WanghaoxuanAccountingRecord;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.*;
@@ -14,11 +17,11 @@ public interface WanghaoxuanAccountingRecordMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into wanghaoxuan_accounting_record (id, record_type, ",
+        "insert into wanghaoxuan_accounting_record (record_type, ",
         "des, amount, record_time, ",
         "category, gmt_create, ",
         "gmt_modifie)",
-        "values (#{id,jdbcType=BIGINT}, #{recordType,jdbcType=VARCHAR}, ",
+        " #{recordType,jdbcType=VARCHAR}, ",
         "#{des,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, #{recordTime,jdbcType=TIMESTAMP}, ",
         "#{category,jdbcType=VARCHAR}, now(),",
         "now())"
@@ -48,7 +51,7 @@ public interface WanghaoxuanAccountingRecordMapper {
         "id, record_type, des, amount, record_time, category, gmt_create, gmt_modifie",
         "from wanghaoxuan_accounting_record"
     })
-    @Results({
+    @Results(id = "Alldata",value = {
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="record_type", property="recordType", jdbcType=JdbcType.VARCHAR),
         @Result(column="des", property="des", jdbcType=JdbcType.VARCHAR),
@@ -59,6 +62,19 @@ public interface WanghaoxuanAccountingRecordMapper {
         @Result(column="gmt_modifie", property="gmtModifie", jdbcType=JdbcType.TIMESTAMP)
     })
     List<WanghaoxuanAccountingRecord> selectAll();
+
+    @Select({
+            "select",
+            "id, record_type, des, amount, record_time, category, gmt_create, gmt_modifie",
+            "from wanghaoxuan_accounting_record",
+            "where record_time=#{recordTime}"
+    })
+    @ResultMap("Alldata")
+    List<WanghaoxuanAccountingRecord> selectDate(@Param("recordTime") Date recordTime);
+
+    @SelectProvider(type = MixBuilder.class,method = "buildMix")
+    @ResultMap("Alldata")
+    List<WanghaoxuanAccountingRecord> mix(@Param("wanghaoxuanAccountingRecord")WanghaoxuanAccountingRecord wanghaoxuanAccountingRecord);
 
     @Update({
         "update wanghaoxuan_accounting_record",
