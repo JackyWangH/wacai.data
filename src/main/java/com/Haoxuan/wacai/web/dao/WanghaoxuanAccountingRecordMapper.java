@@ -72,10 +72,6 @@ public interface WanghaoxuanAccountingRecordMapper {
     @ResultMap("Alldata")
     List<WanghaoxuanAccountingRecord> selectDate(@Param("recordTime") Date recordTime);
 
-    @SelectProvider(type = MixBuilder.class,method = "buildMix")
-    @ResultMap("Alldata")
-    List<WanghaoxuanAccountingRecord> mix(@Param("wanghaoxuanAccountingRecord")WanghaoxuanAccountingRecord wanghaoxuanAccountingRecord);
-
     @Update({
         "update wanghaoxuan_accounting_record",
         "set record_type = #{recordType,jdbcType=VARCHAR},",
