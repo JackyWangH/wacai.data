@@ -55,9 +55,7 @@ public interface WangHaoxuanBlogChartMapper {
         "select",
         "id, article_type, article_title, article_content, article_sdTime, article_count, ",
         "article_from, article_author, dz, sc, Mine",
-        "from wang_haoxuan_blog_chart ",
-        "where article_sdTime  limit 8"
-
+        "from wang_haoxuan_blog_chart order by article_sdTime desc limit 8 ",
     })
     @Results(id = "blogChart",value = {
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
