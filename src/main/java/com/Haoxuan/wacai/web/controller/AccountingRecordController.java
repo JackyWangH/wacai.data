@@ -2,17 +2,16 @@ package com.Haoxuan.wacai.web.controller;
 
 import com.Haoxuan.wacai.web.dao.WanghaoxuanAccountingRecordMapper;
 import com.Haoxuan.wacai.web.dataobject.WanghaoxuanAccountingRecord;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.security.provider.Sun;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AccountingRecordController {
@@ -53,10 +52,11 @@ public class AccountingRecordController {
         return "修改成功";
     }
 
-    @RequestMapping(path = "/list")//查询数据
-    public List<WanghaoxuanAccountingRecord>listall(){
-        List<WanghaoxuanAccountingRecord>accountingRecords=wanghaoxuanAccountingRecordMapper.selectAll();
-        return accountingRecords;
+    @RequestMapping(path = "/search-all")//查询数据
+    public String listall(Model mode1){
+        List<WanghaoxuanAccountingRecord> lists=wanghaoxuanAccountingRecordMapper.selectAll();
+        mode1.addAttribute("lists",lists);
+        return "search";
     }
 
     @RequestMapping(path = "/list/date")//时间查询
