@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询界面</title>
+</head>
+<body>
+    <div>查询端口信息：</div>
+    <form method="get" action="/search-result">
+        <div>请输入您的手机号：</div>
+        <input name="phone" type="text" autocomplete="off"><!--输入框不会保留历史记录，保互信息-->
+        <button type="submit">查询</button><!--将会跳转到查询界面-->
+    </form>
+
+    <a href="/selectAll/page=1">查询所有端口号</a><!--根据页面查询-->
+</body>
+</html>

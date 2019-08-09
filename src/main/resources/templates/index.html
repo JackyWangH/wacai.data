@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <div>请选择以下操作：</div>
+    <div style="margin-bottom: 50px;"><a href="/search-index" style="font-size: 20px;">查询端口号</a></div>
+    <div style="font-size: 30px;">插入数据：</div>
+    <form method="get" action="/insert" style="border: 1px solid #999">
+        <div>姓名：<input type="text" name="name"></div>
+        <div>手机号：<input type="text" name="phoneNum"></div>
+        <div>端口号：<input type="text" name="port"></div>
+        <div>密码：<input type="text" name="password"></div>
+        <button type="submit">插入</button>
+        <!--input框里的name是参数，用户输入value值后，submit，访问action表单里跳转后端方法-->
+    </form>
+</body>
+</html>
