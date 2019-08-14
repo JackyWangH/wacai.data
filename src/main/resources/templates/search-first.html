@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>塔大一码</title>
+    <style>
+        .background {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right bottom, #faffc9, #c5ffb5, #95dbff, #ffd4e8);
+        }
+        .card{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        *{
+            margin:0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+            margin: 0;
+        }
+
+        .word{
+            height: 30px;
+        }
+        input{
+            border: 1px;
+            height: 18px;
+            border-radius: 10%;
+        }
+        button{
+            border: 0px;
+            background: #fdff94;
+            color: #ff1f1d;
+            width: 50px;
+            height: 25px;
+            border-radius: 15%;
+        }
+        .headsearch{
+            position: absolute;
+            top: 15%;
+            width:20%;
+            height: 12%;
+            left: 28%;
+            background: #ffe1da;
+            font-size: 20px;
+            border-radius: 10%;
+        }
+        .headword{
+            padding-left: 15px;
+            font-size: 15px;
+        }
+        .searchone{
+            width: 50%;
+        }
+        .middle{
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            background: #f5d8ff;
+            height: 50%;
+            width: 20%;
+            border-radius: 15%;
+        }
+        .middleword{
+            padding-left:20px ;
+            padding-top: 10px;
+        }
+        .right-head{
+            position: absolute;
+            top: 30%;
+            left: 52%;
+            background: #ffd5d9;
+            height: 50%;
+            width: 20%;
+            border-radius: 15%;
+        }
+        .rightword{
+            padding-left:20px ;
+            padding-top: 10px;
+        }
+        .under{
+            position: absolute;
+            background: #dfffde;
+            top:15%;
+            left:50%;
+            height: 12%;
+            width: 20%;
+            border-radius: 10%;
+        }
+        .underword{
+            padding-left: 15px;
+            padding-top: 10px;
+        }
+        a{TEXT-DECORATION:none}
+    </style>
+    <script>
+       let sort= function () {
+           if(document.querySelector(".phone").value===""){
+           alert("请输入您要查询的手机号");}
+       }
+       let del= function () {
+           if(document.querySelector(".phone").value===""){
+               alert("请输入您要排除的手机号");}
+       }
+       }
+       let dell=function () {
+
+           if(document.querySelector(".phone").value===""){
+
+               alert("请输入手机号");
+           }
+
+       }
+    </script>
+</head>
+<body>
+<div class="background">
+<div class="card">
+    <div class="headsearch">
+        <div class="headword">
+    <div class="searchone">查   询：<!--根据页面查询-->   <a href="/selectall/page=1">查询全部</a></div>
+    <form method="get" action="/search/second">
+        <div>请输入您的手机号：</div>
+        <input  class="phone" name="phone" onblur="sort()" type="text" autocomplete="off"><!--输入框不会保留历史记录，保互信息-->
+        <button class="buttons_sort" onclick="sor()" type="submit">查询</button><!--将会跳转到查询界面-->
+    </form>
+        </div>
+    </div>
+    
+    <div class="middle">
+<div class="middleword">
+    <div style="font-size: 30px;">插入数据：<a href="/insertall">全部</a></div><br>
+    <form method="get" action="/insert" style="border: 0px">
+        <div class="word">
+        <div>姓名：<input  class="name1" autocomplete="off" type="text" name="name"></div><br>
+        <div>手机号：<input class="phone1" autocomplete="off" type="text" name="phone"></div><br>
+        <div>端口号：<input class="port1" autocomplete="off" type="text" name="port"></div><br>
+        <div>密码：<input class="password1"  autocomplete="off" type="text" name="password"></div><br>
+            <button class="buttons_cha"  style="font-size: 20px;width: 60%;height: 90%;left: 15%;position: relative" type="submit">cha一个</button>
+        </div>
+
+        <!--input框里的name是参数，用户输入value值后，submit，访问action表单里跳转后端方法-->
+    </form>
+</div>
+    </div>
+    <div  class="right-head">
+        <div style="font-size: 30px;line-height: 60px">&nbsp;&nbsp;修改数据:</div>
+        <form method="get" action="/updata" style="border: 0px">
+            <div class="rightword">
+                <div>姓名：<input class="name2" autocomplete="off" type="text" name="name"></div><br>
+                <div>手机号：<input class="phone2" autocomplete="off" type="text" name="phone"></div><br>
+                <div>端口号：<input class="port2" autocomplete="off" type="text" name="port"></div><br>
+                <div>密码：<input class="password2" autocomplete="off" type="text" name="password"></div><br>
+                <button class="buttons_mod" style="font-size: 20px;width: 60%;height: 90%;left: 15%;position: relative" type="submit">gai一下</button>
+            </div>
+
+            <!--input框里的name是参数，用户输入value值后，submit，访问action表单里跳转后端方法-->
+        </form>
+         </div>
+    </div>
+    <div class="under">
+        <div class="underword">
+    <form method="get" action="/delete">
+        <div class="delete">请输入删除的手机号:<a href="/deleteall">全部</a></div>
+            <input onblur="del()" autocomplete="off" name="phone" type="text">
+        <button class="buttons_del" onclick="dell()" type="submit">删除</button>
+    </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

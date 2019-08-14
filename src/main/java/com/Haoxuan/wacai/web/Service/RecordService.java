@@ -36,7 +36,9 @@ public class RecordService {
                     record.setName(row.getCell(2).getStringCellValue());//姓名第三列
                     record.setPhone(row.getCell(3).getStringCellValue());//手机号第四列
                     records.put(record.getPhone(),record);//手机号为Key值，为Hashmap查询方式，Value为record记录
+                    wb.close();
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (InvalidFormatException e) {

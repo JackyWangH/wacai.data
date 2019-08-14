@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询全部</title>
+    <style>
+
+        a{TEXT-DECORATION:none}
+        .lists {
+            position: absolute;
+            left: 50%;
+            top: 5%;
+            font-size: 17px;
+            background: linear-gradient(to bottom, #d4ffdc, #ffa5fe, #fff9c1);
+            width: 300px;
+            padding-left: 50px;
+            border-radius: 10%;
+        }
+        .backkey2{
+                position: absolute;
+                top: 30%;
+                left: 4%;
+                font-size: 40px;
+                width: 140px;
+                height: 80px;
+                line-height: 70px;
+                padding-left: 50px;
+                border-radius: 50%;
+                background: #ff1f1d;
+                color: white;
+
+        }
+        .pep{
+            position: absolute;
+            top:10%;
+            left: 10%;
+            height: 80%;
+        }
+        .select{
+            outline: none;
+            position: absolute;
+            top: 6%;
+            left: 1%;
+            font-size: 18px;
+            width: 100px;
+            height: 30px;
+            padding-left: 10px;
+            background: #dcfff3;
+            color: black;
+            border:0px;
+        }
+    </style>
+    <script>
+
+        function  change() {
+           var out=document.getElementById('change');
+           if(out.style.display=''||out.style.display=='block'){
+               out.style.display='none';
+           }else{
+               out.style.display='block';
+           }
+        }
+    </script>
+</head>
+<body>
+<img class="pep" src="http://08.imgmini.eastday.com/mobile/20160628/20160628122046_dc779d3f0d82fdb11896fb008eed0b9d_33.jpeg">
+<a class="backkey2" href="/back">返&nbsp;回</a>
+<button class="select" onclick="change()">选择页码</button>
+
+<div id="change" style="display: none;color: black" th:if="${length>=1}">
+            <span th:each="i:${#numbers.sequence(1,length)}">
+                <a th:href="@{'/selectall/page='+${i}}">
+                    <span th:text="${i}"></span>
+                </a>
+            </span>
+</div>
+
+<div class="lists" th:if="${lists!=null}">
+    <div th:each="list:${lists}">
+        <div>姓名：<span th:text="${list.name}"></span></div>
+        <div>手机号：<span th:text="${list.phone}"></span></div>
+        <div>密码: <span th:text="${list.password}"></span></div>
+        <div>端口号：<span th:text="${list.port}"></span></div><br>
+    </div>
+</div>
+</body>
+</html>
